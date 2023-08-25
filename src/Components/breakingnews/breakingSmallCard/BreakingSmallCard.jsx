@@ -18,10 +18,11 @@ function BreakingSmallCard({ news, desc, published_data, image_url }) {
           <img src={image_url} alt={news} />
         </div>
         <div>
-          <h4
+          <p
+            style={{ fontWeight: "500" }}
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(news),
-            }}></h4>
+            }}></p>
         </div>
       </div>
       <div className="horizontal-devider" />
