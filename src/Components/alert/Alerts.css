@@ -46,3 +46,9 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
 }
+
+@media only screen and (max-width: 600px) {
+  .alert {
+    width: 70% !important;
+  }
+}

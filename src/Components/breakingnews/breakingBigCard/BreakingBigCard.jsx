@@ -1,4 +1,5 @@
 import React from "react";
+import DOMPurify from "dompurify";
 
 function BreakingBigCard({ news, desc, published_data, image_url }) {
   return (
@@ -8,8 +9,11 @@ function BreakingBigCard({ news, desc, published_data, image_url }) {
           <img src={image_url} alt={news} />
         </div>
         <div className="big-card-body">
-          <h3>{news}</h3>
-          <p>{desc}</p>
+          <h3
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(news),
+            }}></h3>
+          <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(desc) }}></p>
         </div>
       </div>
     </div>

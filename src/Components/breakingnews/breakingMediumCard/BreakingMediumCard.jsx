@@ -1,4 +1,5 @@
 import React from "react";
+import DOMPurify from "dompurify";
 
 function BreakingMediumCard({ news, desc, published_data, image_url }) {
   return (
@@ -8,7 +9,10 @@ function BreakingMediumCard({ news, desc, published_data, image_url }) {
           <img src={image_url} alt={news} />
         </div>
         <div className="medium-card-body">
-          <h4>{news}</h4>
+          <h4
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(news),
+            }}></h4>
         </div>
       </div>
     </div>

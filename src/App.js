@@ -12,7 +12,7 @@ import Alert from "./Components/alert/Alert";
 function App() {
   return (
     <NewsState>
-      <Router>
+      <Router basename="/react-newss-app">
         <Navbar />
         <Alert />
         <Routes>

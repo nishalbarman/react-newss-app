@@ -134,6 +134,19 @@ function BreakingNews() {
     }
   };
 
+  const handleCityChange = (e) => {
+    const cityName = e.target.value;
+    if (cityName !== "") {
+      breakingNewsRequest(
+        `https://prod.api.etvbharat.com/catalog_lists/search-page-list?page=0&page_size=45&version=v2&response=r2&item_languages=asm&portal_state=assam&q=${cityName}&state=assam&auth_token=${newsContext.AUTHTOKEN}&access_token=${newsContext.ACCESS_TOKEN}`
+      );
+    } else {
+      breakingNewsRequest(
+        `https://prod.api.etvbharat.com/catalog_lists/app-new-headlines-home-assam.gzip?collective_ads_count=0&page=1&page_size=8&version=v2&response=r2&item_languages=asm&portal_state=assam&auth_token=${newsContext.AUTHTOKEN}&access_token=${newsContext.ACCESS_TOKEN}`
+      );
+    }
+  };
+
   const navigate = useNavigate();
 
   return (
@@ -143,6 +156,18 @@ function BreakingNews() {
       style={{ width: "100%" }}>
       <div className="news-div-titles">
         <h3>অসম</h3>
+
+        <div className="news-title-buttons cities-mobile">
+          <select onChange={handleCityChange}>
+            <option value="">All</option>
+            <option value="nalbari">Nalbari</option>
+            <option value="sonitpur">Sonitpur</option>
+            <option value="gauhati">Gauhati</option>
+            <option value="jorhat">Jorhat</option>
+            <option value="dibrugarh">Dibrugarh</option>
+          </select>
+        </div>
+
         <div className="news-title-buttons">
           <CityAnchor
             click={() => {

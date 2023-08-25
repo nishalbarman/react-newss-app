@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { NewsContext } from "../../../Contexts/NewsState";
+import DOMPurify from "dompurify";
 
 function BreakingSmallCard({ news, desc, published_data, image_url }) {
   const newsContext = useContext(NewsContext);
@@ -17,7 +18,10 @@ function BreakingSmallCard({ news, desc, published_data, image_url }) {
           <img src={image_url} alt={news} />
         </div>
         <div>
-          <h4>{news}</h4>
+          <h4
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(news),
+            }}></h4>
         </div>
       </div>
       <div className="horizontal-devider" />

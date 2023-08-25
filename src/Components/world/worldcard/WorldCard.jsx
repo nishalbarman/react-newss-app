@@ -8,7 +8,10 @@ function WorldCard({ image_url, news, desc, alt_tag }) {
         <img src={image_url} alt={alt_tag} />
       </div>
       <div className="big-card-body">
-        <h3>{news}</h3>
+        <h3
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(news),
+          }}></h3>
         <p
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(desc),

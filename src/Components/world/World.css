@@ -45,6 +45,7 @@ div.swiper-cards > div.big-card-body {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  text-overflow: hidden;
 }
 
 div.swiper-cards > div.big-card-body > p {
@@ -56,6 +57,11 @@ div.swiper-cards > div.big-card-body > p {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  text-overflow: hidden;
+}
+
+div.swiper-cards > div.big-card-body > p > p:first-child ~ p {
+  display: none;
 }
 
 div.swiper-cards > div.big-card-image {
