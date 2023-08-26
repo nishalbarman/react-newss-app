@@ -11,7 +11,6 @@ function Country() {
   const [localList, setLocalList] = useState([]);
 
   useEffect(() => {
-    console.log(countryNewsList);
     if (countryNewsList.length !== 0) {
       let newArray = [];
       for (let i = 0; i < 20; i++) {
@@ -101,8 +100,8 @@ function Country() {
       ) : (
         <div id="country_news" className="news-grid news-grid-jiban">
           {/* card will append here */}
-          {localList.map((newsDetails) => {
-            return <WorldCard {...newsDetails} />;
+          {localList.map((newsDetails, i) => {
+            return <WorldCard key={i} {...newsDetails} />;
           })}
         </div>
       )}

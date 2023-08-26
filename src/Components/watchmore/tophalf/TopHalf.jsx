@@ -20,7 +20,13 @@ function TopHalf({ bigCard, smallCardList }) {
         <div id="axom-breaking-vertical-append" className="axom-news-cards">
           {/* breaking news middle 5 cards  */}
           {smallCardList?.map((singleNews, i) => {
-            return <BreakingSmallCard key={i} {...singleNews} />;
+            return (
+              <BreakingSmallCard
+                key={i}
+                {...singleNews}
+                style={{ maxWidth: "100%", width: "100%" }}
+              />
+            );
           })}
         </div>
       </div>

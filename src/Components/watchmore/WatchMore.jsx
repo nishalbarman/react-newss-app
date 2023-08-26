@@ -22,7 +22,7 @@ function WatchMore() {
       setSmallCardList([]);
       for (let i = 0; i < 5; i++) {
         setSmallCardList((pr) => {
-          console.log("small cards => ", rest[i]);
+          // console.log("small cards => ", rest[i]);
           let newar = [...pr, rest[i]];
           return newar;
         });
@@ -37,6 +37,8 @@ function WatchMore() {
       });
     }
   }, [breakingNewsList]);
+
+  console.clear();
 
   return (
     <>

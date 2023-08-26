@@ -176,7 +176,7 @@
   max-width: 600px;
   width: auto;
   cursor: pointer;
-  /* height: 63px; */
+  height: 63px;
 }
 
 .small-cards > .small-card-image-outer {
@@ -192,7 +192,7 @@
   aspect-ratio: 16/9;
 }
 
-.small-cards > div > h4 {
+.small-cards > div > p {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -202,8 +202,7 @@
 
 .axom-news-cards {
   margin: 0px -10px;
-  /* width: fit-content; */
-  width: 100%;
+  width: fit-content;
 }
 
 .medium-card {

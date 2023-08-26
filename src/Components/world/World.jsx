@@ -168,12 +168,11 @@ function World() {
             className="slide-container"
             {...splideObject}
             navigation={true}
-            modules={[Navigation, Pagination]}
-            onSwiper={(swiper) => console.log(swiper)}>
+            modules={[Navigation, Pagination]}>
             {/* slides card */}
-            {sliderList?.map((singleNews) => {
+            {sliderList?.map((singleNews, i) => {
               return (
-                <SwiperSlide>
+                <SwiperSlide key={i}>
                   <WorldCard {...singleNews} />
                 </SwiperSlide>
               );

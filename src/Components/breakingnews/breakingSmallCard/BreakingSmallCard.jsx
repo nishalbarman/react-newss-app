@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import { NewsContext } from "../../../Contexts/NewsState";
 import DOMPurify from "dompurify";
 
-function BreakingSmallCard({ news, desc, published_data, image_url }) {
+function BreakingSmallCard({ news, desc, published_data, image_url, style }) {
   const newsContext = useContext(NewsContext);
   const { showAlert } = newsContext.alert;
 
   return (
     <>
       <div
+        style={style}
         className="small-cards"
         onClick={() => {
           console.log("showing an alert");

@@ -1,14 +1,93 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
+import { NewsContext } from "../../Contexts/NewsState";
 
 export default function Navbar() {
+  const newsContext = useContext(NewsContext);
   const [mobileInputValue, setMobileInputValue] = useState("");
   const [sideMenuShow, setSideMenuShow] = useState(false);
+  const [searchViewList, setSearchViewList] = useState([]);
+  const [isSDataVisible, setIsSDataVisible] = useState(false);
 
   const navigate = useNavigate();
 
   const handleMobileSearchClick = () => {};
+
+  const debounce = (callback, duration) => {
+    let timeout;
+    return (query) => {
+      clearInterval(timeout);
+      timeout = setTimeout(() => {
+        if (query !== "") {
+          callback(query);
+        }
+      }, duration);
+    };
+  };
+
+  const searchRequest = async (query) => {
+    try {
+      const res = await fetch(
+        `https://prod.api.etvbharat.com/catalog_lists/search-page-list?page=0&page_size=45&version=v2&response=r2&item_languages=asm&portal_state=assam&q=${query}&state=assam&auth_token=${newsContext.AUTHTOKEN}&access_token=${newsContext.ACCESS_TOKEN}`
+      );
+      const data = await res.json();
+      const list = data.data.catalog_list_items;
+
+      list.forEach((object) => {
+        object.catalog_list_items.forEach((newsDetails) => {
+          if (newsDetails.message !== "No Items Present") {
+            try {
+              const {
+                title: news,
+                genres: category,
+                keywords,
+                publish_date_string: publishedDate,
+                short_description: desc,
+                thumbnails: {
+                  high_16_9: { url: image_url, alt_tags, caption },
+                },
+                web_url,
+              } = newsDetails;
+
+              let newsDetailsApnaStyle = {
+                news,
+                keywords,
+                category,
+                publishedDate,
+                desc,
+                image_url,
+                web_url,
+                alt_tags,
+                caption,
+              };
+
+              setSearchViewList((prevList) => {
+                let newList = [...prevList, newsDetailsApnaStyle];
+                return newList;
+              });
+            } catch (error) {
+              console.warn(
+                "Error occured in retrieving list => ",
+                error.message
+              );
+            }
+          }
+        });
+      });
+    } catch (er) {
+      newsContext.alert.showAlert({
+        message: "Error occured while searching for data",
+        variant: "error",
+      });
+    }
+  };
+
+  const debounceData = debounce(searchRequest, 1000);
+
+  const handleSearchInput = (e) => {
+    debounceData(e.target.value);
+  };
 
   const handleMobileSearchChange = (e) => {
     console.log(e.target.value);
@@ -128,6 +207,7 @@ export default function Navbar() {
               placeholder="Search"
               id="search"
               className={styles.search}
+              onChange={handleSearchInput}
               autoComplete="off"
             />
             <i

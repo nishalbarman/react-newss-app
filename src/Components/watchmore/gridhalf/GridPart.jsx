@@ -12,8 +12,8 @@ function GridPart({ localList }) {
 
       <div id="country_news" className="news-grid news-grid-jiban">
         {/* card will append here */}
-        {localList?.map((newsDetails) => {
-          return <WorldCard {...newsDetails} />;
+        {localList?.map((newsDetails, i) => {
+          return <WorldCard key={i} {...newsDetails} />;
         })}
       </div>
     </div>

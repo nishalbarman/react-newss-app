@@ -27,7 +27,6 @@ function BreakingNews() {
     setSmallCardList([]);
     for (let i = 0; i < 5; i++) {
       setSmallCardList((pr) => {
-        console.log("small cards => ", rest[i]);
         let newar = [...pr, rest[i]];
         return newar;
       });
@@ -42,13 +41,11 @@ function BreakingNews() {
   const breakingNewsRequest = async (
     API = `https://prod.api.etvbharat.com/catalog_lists/app-new-headlines-home-assam.gzip?collective_ads_count=0&page=1&page_size=8&version=v2&response=r2&item_languages=asm&portal_state=assam&auth_token=${newsContext.AUTHTOKEN}&access_token=${newsContext.ACCESS_TOKEN}`
   ) => {
-    console.log(API);
     try {
       setBreakingNewsList([]);
       const res = await fetch(API);
       const data = await res.json();
       const list = data.data.catalog_list_items;
-      console.log(list);
 
       list.forEach((object) => {
         object.catalog_list_items.forEach((newsDetails) => {
@@ -100,7 +97,6 @@ function BreakingNews() {
   };
 
   const handleCityClick = (active) => {
-    console.log("City changed cliked");
     setLoading(true);
     setCityActive(active);
     switch (active) {
@@ -148,7 +144,7 @@ function BreakingNews() {
   };
 
   const navigate = useNavigate();
-
+  // console.clear();
   return (
     <div
       id="axom-breaking-news"
