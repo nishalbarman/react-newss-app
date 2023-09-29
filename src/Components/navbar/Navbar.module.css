@@ -181,7 +181,7 @@
 }
 
 .menu_items_outer > div > img {
-  width: 100px;
+  width: 120px;
 }
 
 .menu_links {
@@ -312,7 +312,9 @@
   }
 
   .news_logo > img[alt="website-logo"] {
-    width: 100px;
+    /* width: 100px; */
+    height: 50px !important;
+    margin-top: 8px;
   }
 
   .second_half {

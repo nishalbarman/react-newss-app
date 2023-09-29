@@ -8,6 +8,7 @@ import PageNotFound from "./Components/pagenotfound/PageNotFound";
 import NewsState from "./Contexts/NewsState";
 import WatchMore from "./Components/watchmore/WatchMore";
 import Alert from "./Components/alert/Alert";
+import Footer from "./Components/footer/Footer";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
               </Container>
             }></Route>
         </Routes>
+        <Footer />
       </Router>
     </NewsState>
   );

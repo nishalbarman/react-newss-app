@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { NewsContext } from "../../Contexts/NewsState";
+import webLogo from "../../Images/logo.png";
 
 export default function Navbar() {
   const newsContext = useContext(NewsContext);
@@ -126,7 +127,7 @@ export default function Navbar() {
           }}>
           <div className={styles.logo_new}>
             <img
-              src="https://images.news18.com/assam/uploads/2020/11/desktop-assam-navlogo.png"
+              src={webLogo}
               alt="logo"
               className={sideMenuShow ? styles.fadeIn : styles.fadeOut}
               style={{ cursor: "pointer" }}
@@ -191,9 +192,10 @@ export default function Navbar() {
           !sideMenuShow ? styles.fadeIn : styles.fadeOut
         }`}>
         <img
-          src="https://images.news18.com/assam/uploads/2020/11/desktop-assam-navlogo.png"
+          // src="https://images.news18.com/assam/uploads/2020/11/desktop-assam-navlogo.png"
+          src={webLogo}
           alt="website-logo"
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", height: "100px" }}
           onClick={() => {
             navigate("/");
           }}
